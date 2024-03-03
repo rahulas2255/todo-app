@@ -1,0 +1,81 @@
+<div class="container-fluid">
+  <div class="container ">
+    <div class="row mt-5 rounded" style="height: 600px">
+      <div class="col"></div>
+      <div class="col-md-6 bg-white shadow">
+        <div class="card bg-dark mt-3">
+          <h4 class="text-light text-center ps-2 pt-2 pb-2">To Do Task</h4>
+        </div>
+        <div >
+          <div class="input-group mb-3 mt-4 shadow">
+            <input
+              [(ngModel)]="addTaskData"
+              type="text"
+              class="form-control"
+              placeholder="Add Your Task"
+            />
+            <button
+              class="btn btn-outline-success"
+              type="button"
+              (click)="addTask()"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+
+        <h3 class="text-dark mt-5">Task</h3>
+        <div style="overflow-y: auto; height: 350px">
+          <div class="m-3 " *ngFor="let data of taskArr">
+            <div class="p-2 border rounded">
+              <div class="input-group row ps-3 ">
+                <div class="col-md-8 ">
+                  <p class="fw-bolder mt-2"><i class="fa-solid fa-star-of-life"></i> {{ data.task }}</p>
+                </div>
+                <button
+                (click)="callEdit(data)"
+                type="button"
+                  class="btn rounded btn-outline-primary me-3 col"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                >
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Task</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="input-group p-3">
+                            <input [(ngModel)]="editTaskData" type="text" class="form-control" placeholder="Add Your Task" name="task">
+                            <button class="btn btn-outline-success" data-bs-dismiss="modal" (click)="editTask()">Update</button>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                <div
+                  class="btn rounded btn-outline-danger  col"
+                  (click)="deleteTask(data)"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </div>
+                
+              </div>
+              
+            </div>
+            
+          </div>
+          
+        </div>
+       
+      </div>
+      
+      <div class="col"></div>
+    </div>
+  </div>
+</div>
